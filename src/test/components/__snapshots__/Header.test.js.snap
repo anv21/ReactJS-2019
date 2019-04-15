@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Header should be like snapshot when AppState is DetailsPage 1`] = `ShallowWrapper {}`;
-
-exports[`Header should be like snapshot when AppState is SearchPage 1`] = `ShallowWrapper {}`;

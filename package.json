@@ -7,8 +7,7 @@
     "server": "cd server && nodemon --require @babel/register index.js",
     "start": "webpack-dev-server --mode development --open --config webpack.dev.js",
     "build": "webpack --mode production --config webpack.prod.js",
-    "test": "jest",
-    "cypress": "cypress open"
+    "test": "jest"
   },
   "dependencies": {
     "@babel/cli": "^7.2.3",
@@ -18,14 +17,10 @@
     "@babel/register": "^7.0.0",
     "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
-    "babel-plugin-styled-components": "^1.5.1",
     "clean-webpack-plugin": "^2.0.1",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
     "eslint-config-airbnb": "^17.1.0",
     "express": "^4.16.4",
     "html-webpack-plugin": "^3.2.0",
-    "identity-obj-proxy": "^3.0.0",
     "jest": "^24.5.0",
     "mini-css-extract-plugin": "^0.5.0",
     "nodemon": "^1.18.7",
@@ -48,7 +43,6 @@
     "css-loader": "^2.1.1",
     "file-loader": "^3.0.1",
     "img-loader": "^3.0.1",
-    "start-server-and-test": "^1.7.12",
     "style-loader": "^0.23.1"
   }
 }

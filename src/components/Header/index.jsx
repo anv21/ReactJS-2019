@@ -8,22 +8,32 @@ import Details from '../Details/index.jsx';
 
 import APP_STATES from '../../constants/APP_STATES';
 
-const Header = (props) => (
-    <div className="header_wrapper">
-        <div className="header_section">
-            <Logo/>
-            {props.appState === APP_STATES.DETAILS_PAGE ?
-                <Details
-                    item={props.items.find(item => item.id === props.selectedItem)}
-                    goToSearchPage={props.goToSearchPage}
-                />
-                :
-                <SearchField {...props}/>
-            }
-        </div>
-        <InfoBar {...props}/>
-    </div>
-);
+class Header extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const {appState, selectedItem, items, goToSearchPage} = this.props;
+
+        return (
+            <div className="header_wrapper">
+                <div className="header_section">
+                    <Logo/>
+                    {appState === APP_STATES.DETAILS_PAGE ?
+                        <Details
+                            item={items.find(item => item.id === selectedItem)}
+                            goToSearchPage={goToSearchPage}
+                        />
+                        :
+                        <SearchField {...this.props}/>
+                    }
+                </div>
+                <InfoBar {...this.props}/>
+            </div>
+        )
+    }
+}
 
 Header.propTypes = {
     appState: PropTypes.string,
