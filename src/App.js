@@ -1,73 +1,74 @@
 import React from 'react';
 import './assets/style/index.css';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Header from './components/Header/index.jsx';
 import Items from './components/Items/index.jsx';
 import Footer from './components/Footer/index.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
-import items from './mock-data/data.json';
 
-import APP_STATES from './constants/APP_STATES';
-import SEARCH_BY from './constants/SEARCH_BY';
-import SORT_BY from './constants/SORT_BY';
+import {
+    getItems,
+    getItem,
+    getItemsByGenre,
+    setSearchValue,
+    setSortBy,
+    setSearchBy,
+} from './actions/index.js';
 
-class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            value: '',
-            searchBy: SEARCH_BY.TITLE,
-            sortBy: SORT_BY.RELEASE_DATE,
-            appState: APP_STATES.SEARCH_PAGE,
-            selectedItem: null,
-            items: items.data,
-        }
-    }
-
-    goToSearchPage = () => {
-        this.setState({
-            appState: APP_STATES.SEARCH_PAGE
-        })
-    }
-
-    onSearch = (options) => {
-        const {
-            value = this.state.value,
-            searchBy = this.state.searchBy,
-            sortBy = this.state.sortBy
-        } = { ...options };
-        this.setState({
-            value,
-            searchBy,
-            sortBy,
-            selectedItem: null,
-            appState: APP_STATES.SEARCH_PAGE
-        });
-    }
-
-    onItemClick = (id) => {
-        this.setState({
-            selectedItem: id,
-            appState: APP_STATES.DETAILS_PAGE
-        });
+export class App extends React.Component {
+    componentWillMount() {
+        const {getItems} = this.props;
+        getItems();
     }
 
     render() {
         return (
             <ErrorBoundary>
-                <Header
-                    {...this.state}
-                    onSearch={this.onSearch}
-                    goToSearchPage={this.goToSearchPage}
-                />
-                <Items
-                    {...this.state}
-                    onItemClick={this.onItemClick}
-                />
+                <Header {...this.props} />
+                <Items {...this.props} />
                 <Footer />
             </ErrorBoundary>
         )
     }
 }
 
-export default App;
+Items.propTypes = {
+    getItems: PropTypes.func,
+};
+
+Items.defaultProps = {
+    getItems: null,
+};
+
+const mapStateToProps = (state) => {
+    const {
+        items,
+        item,
+        appState,
+        total,
+        value,
+        sortBy,
+        searchBy
+    } = state.appReducer;
+
+     return {
+        items,
+        item,
+        appState,
+        total,
+        value,
+        sortBy,
+        searchBy
+    };
+};
+
+ export default connect(mapStateToProps, {
+    getItems,
+    getItem,
+    getItemsByGenre,
+    setSearchValue,
+    setSortBy,
+    setSearchBy,
+})(App);

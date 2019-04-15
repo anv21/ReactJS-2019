@@ -29,6 +29,6 @@
     cursor: pointer;
 }
 
-.infoBar_sort_by_link:active {
+.active_link {
     color:#f55263;
 }

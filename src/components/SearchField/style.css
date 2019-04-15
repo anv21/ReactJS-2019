@@ -43,6 +43,10 @@
     background-color: #f55263;
 }
 
+.active_button {
+    background-color: #f55263;
+}
+
 .search_button {
     float: right;
     font-weight: bold;

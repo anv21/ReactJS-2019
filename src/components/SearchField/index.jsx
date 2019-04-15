@@ -9,8 +9,7 @@ class SearchField extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
-            searchBy: SEARCH_BY.TITLE
+            value: this.props.value
         }
     }
 
@@ -23,32 +22,36 @@ class SearchField extends React.Component {
     onEnter = (event) => {
         const isEnterPressed = event.which === ENTER_KEY || event.keyCode === ENTER_KEY;
         if (isEnterPressed) {
-            this.props.onSearch(this.state);
+            this.props.setSearchValue(this.state.value);
+            this.props.getItems();
         }
     }
 
     onSearchByTitleClick = () => {
-        this.setState({
-            searchBy: SEARCH_BY.TITLE
-        })
+        this.props.setSearchBy(SEARCH_BY.TITLE);
     }
 
     onSearchByGenreClick = () => {
-        this.setState({
-            searchBy: SEARCH_BY.GENRE
-        })
+        this.props.setSearchBy(SEARCH_BY.GENRE);
     }
 
     onSearchClick = () => {
-        this.props.onSearch(this.state);
+        this.props.getItems();
+    }
+
+    onBlur = () => {
+        this.props.setSearchValue(this.state.value);
     }
 
     render() {
+        const {searchBy} = this.props;
+
         return (
             <div className="search_field_wrapper">
                 <label className="search_field_label">find your movie</label>
                 <input className="search_field_input"
                     onChange={this.onChange}
+                    onBlur={this.onBlur}
                     onKeyPress={this.onEnter}
                     type="text"
                     value={this.state.value}
@@ -56,12 +59,12 @@ class SearchField extends React.Component {
                 <div>
                     <label className="search_field_label">search by</label>
                     <button
-                        className="search_by_button"
+                        className={"search_by_button " + (searchBy === SEARCH_BY.TITLE && "active_button")}
                         onClick={this.onSearchByTitleClick}
                     >title
                     </button>
                     <button
-                        className="search_by_button"
+                        className={"search_by_button " + (searchBy === SEARCH_BY.GENRE && "active_button")}
                         onClick={this.onSearchByGenreClick}
                     >genre
                     </button>
@@ -78,11 +81,17 @@ class SearchField extends React.Component {
 }
 
 SearchField.propTypes = {
-    onSearch: PropTypes.func
+    value: PropTypes.string,
+    searchBy: PropTypes.string,
+    getItems: PropTypes.func,
+    setSearchBy: PropTypes.func,
 };
 
 SearchField.defaultProps = {
-    onSearch: null
+    value: '',
+    searchBy: SEARCH_BY.TITLE,
+    getItems: null,
+    setSearchBy: null,
 };
 
 export default SearchField;

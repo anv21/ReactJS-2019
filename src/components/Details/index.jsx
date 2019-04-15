@@ -2,25 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Details extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
-    goToSearchPage = () => {
-        this.props.goToSearchPage();
-    }
-
     render() {
-        const {item} = this.props;
+        const {item,getItems} = this.props;
         const {poster_path, title, vote_average, tagline, release_date, runtime, overview} = item;
 
         return (
             <div className="details_wrapper">
-                <button 
+                <button
                     className="details_search_button"
-                    onClick={this.goToSearchPage}>search
+                    onClick={getItems}>search
                 </button>
-                <img 
+                <img
                     className="details_image"
                     src={poster_path}
                 />
@@ -42,6 +34,7 @@ class Details extends React.Component {
 }
 
 Details.propTypes = {
+    getItems: PropTypes.func,
     poster_path: PropTypes.string,
     title: PropTypes.string,
     vote_average: PropTypes.number,
@@ -53,12 +46,13 @@ Details.propTypes = {
 };
 
 Details.defaultProps = {
+    getItems: null,
     poster_path: '',
     title: '',
     vote_average: 0,
     tagline: '',
     release_date: '',
-    runtime:  null,
+    runtime: null,
     overview: '',
     goToSearchPage: null
 };

@@ -4,7 +4,8 @@ import { shallow } from 'enzyme';
 import Item from '../../components/Item/index.jsx';
 
 describe('Item', () => {
-    const mockOnItemClick = jest.fn();
+    const mockGetItem = jest.fn();
+    const mockGetItemsByGenre = jest.fn();
     const mockItem = {
         "id": 447365,
         "title": "Guardians of the Galaxy Vol. 3",
@@ -23,15 +24,21 @@ describe('Item', () => {
         ],
         "runtime": 93
     };
-    const item = shallow(<Item onItemClick={mockOnItemClick} item={mockItem}/>);
-
+    const item = shallow(
+        <Item
+            item={mockItem}
+            getItem={mockGetItem}
+            getItemsByGenre={mockGetItemsByGenre}
+        />
+    );
 
     it('should be like snapshot', () => {
         expect(item).toMatchSnapshot();
     });
 
-    it('should call onItemClick function on ItemImage click', () => {
+    it('should call getItem function on ItemImage click', () => {
         item.find('.item_image').simulate('click');
-        expect(mockOnItemClick.mock.calls.length).toBe(1);
+        expect(mockGetItem.mock.calls.length).toBe(1);
+        expect(mockGetItemsByGenre.mock.calls.length).toBe(1);
     });
 });

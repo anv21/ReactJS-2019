@@ -2,13 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Item extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    _onItemClick = () => {
-        const {item, onItemClick} = this.props;
-        onItemClick(item.id);
+    onItemClick = () => {
+        const {item, getItem, getItemsByGenre,} = this.props;
+        const searchValue = item.genres && item.genres[0];
+        getItem(item.id);
+        getItemsByGenre(searchValue);
     }
 
     render() {
@@ -19,7 +17,7 @@ class Item extends React.Component {
             <div className="item_wrapper">
                 <img className="item_image"
                     src={poster_path}
-                    onClick={this._onItemClick}
+                    onClick={this.onItemClick}
                 />
                 <div className="item_info">
                     <span className="item_title">{title}</span>
@@ -36,7 +34,9 @@ Item.propTypes = {
     poster_path: PropTypes.string,
     title: PropTypes.string,
     release_date: PropTypes.string,
-    genres: PropTypes.array
+    genres: PropTypes.array,
+    getItem: PropTypes.func,
+    getItemsByGenre: PropTypes.func
 };
 
 Item.defaultProps = {
@@ -44,7 +44,9 @@ Item.defaultProps = {
     poster_path: '',
     title: '',
     release_date: '',
-    genres: []
+    genres: [],
+    getItem: null,
+    getItemsByGenre: null
 };
 
 export default Item;
