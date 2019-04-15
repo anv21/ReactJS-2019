@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InfoBar should be like snapshot when AppState is DetailsPage 1`] = `ShallowWrapper {}`;
+
+exports[`InfoBar should be like snapshot when AppState is SearchPage 1`] = `ShallowWrapper {}`;
