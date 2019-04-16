@@ -1,0 +1,42 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+import Logo from '../Logo/index.jsx';
+import SearchField from '../SearchField/index.jsx';
+import InfoBar from '../InfoBar/index.jsx';
+import Details from '../Details/index.jsx';
+
+import APP_STATES from '../../constants/APP_STATES';
+
+const Header = (props) => (
+    <div className="header_wrapper">
+        <div className="header_section">
+            <Logo/>
+            {props.appState === APP_STATES.DETAILS_PAGE ?
+                <Details
+                    item={props.items.find(item => item.id === props.selectedItem)}
+                    goToSearchPage={props.goToSearchPage}
+                />
+                :
+                <SearchField {...props}/>
+            }
+        </div>
+        <InfoBar {...props}/>
+    </div>
+);
+
+Header.propTypes = {
+    appState: PropTypes.string,
+    selectedItem: PropTypes.number,
+    items: PropTypes.array,
+    goToSearchPage: PropTypes.func
+};
+
+Header.defaultProps = {
+    appState: '',
+    selectedItem: null,
+    items: [],
+    goToSearchPage: null
+};
+
+export default Header;
