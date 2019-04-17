@@ -1,39 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Logo from '../Logo/index.jsx';
-import SearchField from '../SearchField/index.jsx';
-import InfoBar from '../InfoBar/index.jsx';
-import Details from '../Details/index.jsx';
+import Logo from '../Logo';
+import SearchField from '../SearchField';
+import InfoBar from '../InfoBar';
+import Details from '../Details';
 
 import APP_STATES from '../../constants/APP_STATES';
 
-class Header extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        const {appState, selectedItem, items, goToSearchPage} = this.props;
-
-        return (
-            <div className="header_wrapper">
-                <div className="header_section">
-                    <Logo/>
-                    {appState === APP_STATES.DETAILS_PAGE ?
-                        <Details
-                            item={items.find(item => item.id === selectedItem)}
-                            goToSearchPage={goToSearchPage}
-                        />
-                        :
-                        <SearchField {...this.props}/>
-                    }
-                </div>
-                <InfoBar {...this.props}/>
-            </div>
-        )
-    }
-}
+const Header = (props) => (
+    <div className="header_wrapper">
+        <div className="header_section">
+            <Logo/>
+            {props.appState === APP_STATES.DETAILS_PAGE ?
+                <Details
+                    item={props.items.find(item => item.id === props.selectedItem)}
+                    goToSearchPage={props.goToSearchPage}
+                />
+                :
+                <SearchField {...props}/>
+            }
+        </div>
+        <InfoBar {...props}/>
+    </div>
+);
 
 Header.propTypes = {
     appState: PropTypes.string,

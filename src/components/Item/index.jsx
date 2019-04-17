@@ -2,10 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class Item extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     _onItemClick = () => {
         const {item, onItemClick} = this.props;
         onItemClick(item.id);

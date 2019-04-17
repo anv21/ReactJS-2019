@@ -5,10 +5,7 @@ import APP_STATES from '../../constants/APP_STATES';
 import SORT_BY from '../../constants/SORT_BY';
 
 class InfoBar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {sortBy: SORT_BY.RELEASE_DATE}
-    }
+    state = { sortBy: SORT_BY.RELEASE_DATE };
 
     onSortByReleaseDateClick = () => {
         this.setState({
@@ -18,7 +15,7 @@ class InfoBar extends React.Component {
         });
     }
 
-    onSortByRatingClick = () =>{
+    onSortByRatingClick = () => {
         this.setState({
             sortBy: SORT_BY.RATING
         }, () => {
@@ -27,14 +24,12 @@ class InfoBar extends React.Component {
     }
 
     render() {
-        let output = {};
-        const {appState, items, selectedItem} = this.props;
+        const { appState, items, selectedItem } = this.props;
 
-        switch (appState) {
-            case APP_STATES.SEARCH_PAGE:
-                output = (
-                    <div className="infoBar_section">
-                        {items && items.length > 0 &&
+        if (appState === APP_STATES.SEARCH_PAGE) {
+            return (
+                <div className="infoBar_section">
+                    {items && items.length > 0 &&
                         <div className="infoBar_wrapper">
                             <label className="infoBar_label">{items.length} movies found</label>
                             <div>
@@ -43,27 +38,25 @@ class InfoBar extends React.Component {
                                 <span className="infoBar_sort_by_link" onClick={this.onSortByRatingClick}>rating</span>
                             </div>
                         </div>
-                        }
-                    </div>
-                );
-            break;
-            case APP_STATES.DETAILS_PAGE:
-                output = (
-                    <div className="infoBar_section">
-                        {items && items.length > 0 &&
+                    }
+                </div>
+            );
+        }
+
+        if (appState === APP_STATES.DETAILS_PAGE) {
+            return (
+                <div className="infoBar_section">
+                    {items && items.length > 0 &&
                         <div className="infoBar_wrapper">
                             <label className="infoBar_label">
                                 Films by {items.find((item) => item.id === selectedItem).genres[0]}
                             </label>
                         </div>
-                        }
-                    </div>
-                );
-            break;
+                    }
+                </div>
+            );
         }
-        return (
-            output
-        )
+        return null;
     }
 }
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import './assets/style/index.css';
 
-import Header from './components/Header/index.jsx';
-import Items from './components/Items/index.jsx';
-import Footer from './components/Footer/index.jsx';
-import ErrorBoundary from './components/ErrorBoundary.jsx';
+import Header from './components/Header';
+import Items from './components/Items';
+import Footer from './components/Footer';
+import ErrorBoundary from './components/ErrorBoundary';
 import items from './mock-data/data.json';
 
 import APP_STATES from './constants/APP_STATES';
@@ -12,16 +12,13 @@ import SEARCH_BY from './constants/SEARCH_BY';
 import SORT_BY from './constants/SORT_BY';
 
 class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            value: '',
-            searchBy: SEARCH_BY.TITLE,
-            sortBy: SORT_BY.RELEASE_DATE,
-            appState: APP_STATES.SEARCH_PAGE,
-            selectedItem: null,
-            items: items.data,
-        }
+    state = {
+        value: '',
+        searchBy: SEARCH_BY.TITLE,
+        sortBy: SORT_BY.RELEASE_DATE,
+        appState: APP_STATES.SEARCH_PAGE,
+        selectedItem: null,
+        items: items.data,
     }
 
     goToSearchPage = () => {

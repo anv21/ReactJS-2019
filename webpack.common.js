@@ -6,6 +6,9 @@ module.exports = {
     entry: {
         app: './src/index.js'
     },
+    resolve: {
+        extensions: ['.js', '.jsx'],
+    },
     plugins: [
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
@@ -27,7 +30,7 @@ module.exports = {
                     presets: [
                         '@babel/preset-react',
                         {
-                          plugins: ['@babel/plugin-proposal-class-properties']
+                            plugins: ['@babel/plugin-proposal-class-properties']
                         }
                     ]
                 }
@@ -36,15 +39,15 @@ module.exports = {
         {
             test: /\.(png|jpg|gif)$/,
             use: [
-              {
-                loader: 'file-loader',
-                options: {}
-              },
+                {
+                    loader: 'file-loader',
+                    options: {}
+                },
             ],
-          },
+        },
         {
             test: /\.css$/,
-            use : [
+            use: [
                 {
                     loader: 'style-loader'
                 },

@@ -20,14 +20,5 @@ module.exports = merge(common, {
             filename: "[name].css",
             chunkFilename: "[id].css"
         })
-    ],
-    module: {
-        rules: [{
-            test: /\.css$/,
-            use: [
-                MiniCssExtractPlugin.loader,
-                "css-loader"
-            ]
-        }]
-    }
+    ]
 });

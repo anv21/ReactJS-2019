@@ -6,13 +6,10 @@ import SEARCH_BY from "../../constants/SEARCH_BY";
 const ENTER_KEY = 13;
 
 class SearchField extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: '',
-            searchBy: SEARCH_BY.TITLE
-        }
-    }
+    state = {
+        value: '',
+        searchBy: SEARCH_BY.TITLE
+    };
 
     onChange = (event) => {
         this.setState({
