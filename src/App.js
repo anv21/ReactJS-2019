@@ -1,5 +1,5 @@
 import React from 'react';
-import './assets/style/index.css';
+import './assets/style/index.scss';
 
 import Header from './components/Header';
 import Items from './components/Items';

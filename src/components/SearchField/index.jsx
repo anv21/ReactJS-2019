@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import './SearchField.scss';
 import SEARCH_BY from "../../constants/SEARCH_BY";
 
 const ENTER_KEY = 13;

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Details.scss';
 
 class Details extends React.Component {
     goToSearchPage = () => {

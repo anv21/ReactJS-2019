@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import APP_STATES from '../../constants/APP_STATES';
 import SORT_BY from '../../constants/SORT_BY';
+import './InfoBar.scss';
 
 class InfoBar extends React.Component {
     state = { sortBy: SORT_BY.RELEASE_DATE };

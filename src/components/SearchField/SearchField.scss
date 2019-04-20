@@ -37,10 +37,10 @@
     background-color: #3c3c3c;
     padding: 5px 20px;
     margin: 20px 0 0 10px;
-}
 
-.search_by_button:hover {
-    background-color: #f55263;
+    &:hover {
+        background-color: #f55263;
+    }
 }
 
 .search_button {
@@ -49,9 +49,9 @@
     background-color: #f55263;
     padding: 10px 60px;
     margin-top: 20px;
-}
 
-.search_button:hover {
-    background-color: #fff;
-    color: #f55263;
+    &:hover {
+        background-color: #fff;
+        color: #f55263;
+    }
 }

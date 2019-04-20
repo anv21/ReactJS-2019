@@ -1,0 +1,19 @@
+.items_section {
+    background-color: #fff;
+
+    .items_wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        width: 900px;
+        margin: 0 auto;
+    }
+    
+    .items_empty_result {
+        font-size: 50px;
+        height: 400px;
+        padding-top: 100px;
+        width: 100%;
+        text-align: center;
+    }
+}
+

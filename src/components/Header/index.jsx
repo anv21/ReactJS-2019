@@ -5,6 +5,7 @@ import Logo from '../Logo';
 import SearchField from '../SearchField';
 import InfoBar from '../InfoBar';
 import Details from '../Details';
+import './Header.scss';
 
 import APP_STATES from '../../constants/APP_STATES';
 
