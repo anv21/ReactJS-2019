@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Item from '../Item/index.jsx';
+import {connect} from 'react-redux';
 
 const Items = (props) => (
     <div className="items_section">
@@ -22,15 +23,16 @@ const Items = (props) => (
 )
 
 Items.propTypes = {
-    items: PropTypes.array,
-    getItem: PropTypes.func,
-    getItemsByGenre: PropTypes.func
+    items: PropTypes.array
 };
 
 Items.defaultProps = {
-    items: [],
-    getItem: null,
-    getItemsByGenre: null
+    items: []
 };
 
-export default Items;
+const mapStateToProps = (state) => {
+    const {items} = state.appReducer;
+    return {items};
+};
+
+ export default connect(mapStateToProps)(Items);

@@ -1,17 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {getItem} from '../../actions';
 
 class Details extends React.Component {
+    componentDidMount() {
+        this.props.getItem(this.props.match.params.id);
+    }
+
+     componentDidUpdate(prevProps) {
+        if (prevProps.match.params.id !== this.props.match.params.id) {
+            this.props.getItem(this.props.match.params.id);
+        }
+    }
+
     render() {
-        const {item,getItems} = this.props;
+        const {item, value, searchBy, sortBy} = this.props;
         const {poster_path, title, vote_average, tagline, release_date, runtime, overview} = item;
 
         return (
             <div className="details_wrapper">
+            <Link to={`/search?search=${value}&searchBy=${searchBy}&sortBy=${sortBy}`}>
                 <button
-                    className="details_search_button"
-                    onClick={getItems}>search
+                    className="details_search_button">
+                    search
                 </button>
+            </Link>
                 <img
                     className="details_image"
                     src={poster_path}
@@ -34,27 +49,26 @@ class Details extends React.Component {
 }
 
 Details.propTypes = {
-    getItems: PropTypes.func,
-    poster_path: PropTypes.string,
-    title: PropTypes.string,
-    vote_average: PropTypes.number,
-    tagline: PropTypes.string,
-    release_date: PropTypes.string,
-    runtime: PropTypes.number,
-    overview: PropTypes.string,
-    goToSearchPage: PropTypes.func
+    value: PropTypes.string,
+    searchBy: PropTypes.string,
+    sortBy: PropTypes.string,
+    item: PropTypes.object,
+    getItem: PropTypes.func,
+    match: PropTypes.object
 };
 
 Details.defaultProps = {
-    getItems: null,
-    poster_path: '',
-    title: '',
-    vote_average: 0,
-    tagline: '',
-    release_date: '',
-    runtime: null,
-    overview: '',
-    goToSearchPage: null
+    value: '',
+    searchBy: '',
+    sortBy: '',
+    item: {},
+    getItem: null,
+    match: {params: {id: ''}}
 };
 
-export default Details;
+const mapStateToProps = (state) => {
+    const {value, searchBy, sortBy, item} = state.appReducer;
+    return {value, searchBy, sortBy, item};
+};
+
+export default connect(mapStateToProps, {getItem})(Details);
