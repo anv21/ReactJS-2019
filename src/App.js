@@ -1,18 +1,25 @@
 import React from 'react';
-import Component from './components/React.Component.jsx';
-import PureComponent from './components/React.PureComponent.jsx';
-import CreateElement from './components/React.CreateElement.jsx';
-import FComponent from './components/React.FunctionalComponent.jsx';
+import './assets/style/index.css';
 
-export default class App extends React.Component {
+import Header from './components/Header/index.jsx';
+import Items from './components/Items/index.jsx';
+import Footer from './components/Footer/index.jsx';
+import ErrorBoundary from './components/ErrorBoundary.jsx';
+
+export class App extends React.Component {
+    componentDidUpdate() {
+        window.scrollTo(0, 0);
+    }
+
     render() {
         return (
-            <div>
-                <Component/>
-                <PureComponent/>
-                <CreateElement/>
-                <FComponent/>
-            </div>
-        );
+            <ErrorBoundary>
+                <Header />
+                <Items />
+                <Footer />
+            </ErrorBoundary>
+        )
     }
 }
+
+ export default App;

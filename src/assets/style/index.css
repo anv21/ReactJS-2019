@@ -1,0 +1,16 @@
+@import url('reset.css');
+@import url('../../components/Header/style.css');
+@import url('../../components/Logo/style.css');
+@import url('../../components/SearchField/style.css');
+@import url('../../components/Details/style.css');
+@import url('../../components/Footer/style.css');
+@import url('../../components/Item/style.css');
+@import url('../../components/Items/style.css');
+@import url('../../components/InfoBar/style.css');
+
+html, body {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
