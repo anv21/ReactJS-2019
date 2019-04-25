@@ -1,0 +1,33 @@
+.item_wrapper {
+    width: 250px;
+    margin: 20px;
+
+    .item_image {
+        width: 250px;
+        cursor: pointer;
+    }
+
+    .item_info {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-top: 5px;
+
+        .item_title {
+            flex-basis: 70%;
+        }
+        
+        .item_date {
+            border: 1px solid gray;
+            border-radius: 5px;
+            padding: 1px 5px;
+        }
+    }
+
+    .item_genres {
+        color: gray;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+    
+}

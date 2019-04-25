@@ -2,9 +2,12 @@ const path = require("path");
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+export default {
     entry: {
         app: './src/index.js'
+    },
+    resolve: {
+        extensions: ['.js', '.jsx'],
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -24,9 +27,51 @@ module.exports = {
             use: {
                 loader: 'babel-loader',
                 options: {
-                    presets: ['@babel/preset-react']
+                    presets: [
+                        '@babel/preset-react',
+                        {
+                            plugins: ['@babel/plugin-proposal-class-properties']
+                        }
+                    ]
                 }
             }
+        },
+        {
+            test: /\.(png|jpg|gif)$/,
+            use: [
+                {
+                    loader: 'file-loader',
+                    options: {}
+                },
+            ],
+        },
+        {
+            test: /\.css$/,
+            use: [
+                {
+                    loader: 'style-loader'
+                },
+                {
+                    loader: 'css-loader',
+                    options: {
+                        sourceMap: true,
+                    }
+                }
+            ]
+        },
+        {
+            test: /\.scss$/,
+            use: [
+              {
+                loader: "style-loader"
+              },
+              {
+                loader: "css-loader"
+              },
+              {
+                loader: "sass-loader"
+              }
+            ]
         }]
     },
 };
