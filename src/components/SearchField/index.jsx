@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import URLSearchParams from '@ungap/url-search-params';
 
 import SEARCH_BY from "../../constants/SEARCH_BY";
-import {getItems, setSearchValue, setSearchBy} from '../../actions';
+import { getItems, setSearchValue, setSearchBy } from '../../actions';
 
 const ENTER_KEY = 13;
 
@@ -16,7 +17,7 @@ class SearchField extends React.Component {
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         const params = new URLSearchParams(this.props.location.search);
         this._getItems(params);
     }
@@ -29,9 +30,10 @@ class SearchField extends React.Component {
     }
 
     _getItems(params) {
-        const value = params.get('search');
-        const searchBy = params.get('searchBy');
-        const sortBy = params.get('sortBy');
+
+        const value = params.get('search') || this.props.value;
+        const searchBy = params.get('searchBy') || this.props.searchBy;
+        const sortBy = params.get('sortBy') || this.props.sortBy;
         this.props.getItems(value, searchBy, sortBy);
     }
 
@@ -44,7 +46,7 @@ class SearchField extends React.Component {
     onEnter = (event) => {
         const isEnterPressed = event.which === ENTER_KEY || event.keyCode === ENTER_KEY;
         if (isEnterPressed) {
-            const {searchBy, sortBy} = this.props;
+            const { searchBy, sortBy } = this.props;
             this.props.setSearchValue(this.state.value);
             this.props.history.push(`/search?search=${this.state.value}&searchBy=${searchBy}&sortBy=${sortBy}`);
         }
@@ -63,7 +65,7 @@ class SearchField extends React.Component {
     }
 
     render() {
-        const {searchBy, sortBy} = this.props;
+        const { searchBy, sortBy } = this.props;
 
         return (
             <div className="search_field_wrapper">
@@ -115,15 +117,15 @@ SearchField.defaultProps = {
     value: '',
     searchBy: SEARCH_BY.TITLE,
     sortBy: '',
-    getItems: function () {},
+    getItems: function () { },
     setSearchBy: null,
     setSearchValue: null,
     location: {}
 };
 
 const mapStateToProps = (state) => {
-    const {value, searchBy, sortBy} = state.appReducer;
-    return {value, searchBy, sortBy};
+    const { value, searchBy, sortBy } = state.appReducer;
+    return { value, searchBy, sortBy };
 };
 
-export default connect(mapStateToProps, {getItems, setSearchValue, setSearchBy})(SearchField);
+export default connect(mapStateToProps, { getItems, setSearchValue, setSearchBy })(SearchField);

@@ -3,8 +3,7 @@ import APP_STATES from '../constants/APP_STATES';
 import SEARCH_BY from '../constants/SEARCH_BY';
 import SORT_BY from '../constants/SORT_BY';
 
- const initialState = {
-    appState: APP_STATES.SEARCH_PAGE,
+const initialState = {
     value: '',
     sortBy: SORT_BY.RELEASE_DATE,
     searchBy: SEARCH_BY.TITLE,
@@ -12,7 +11,7 @@ import SORT_BY from '../constants/SORT_BY';
     item: {}
 };
 
- const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case ACTION_TYPES.GET_ITEMS_SUCCESS:
             return {
@@ -52,4 +51,4 @@ import SORT_BY from '../constants/SORT_BY';
     }
 };
 
- export default appReducer;
+export default appReducer;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Item from '../Item/index.jsx';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 const Items = (props) => (
     <div className="items_section">
@@ -15,9 +15,7 @@ const Items = (props) => (
                         getItemsByGenre={props.getItemsByGenre}
                     />
                 ))
-                ) : (
-            <div className="items_empty_result">No films found</div>
-            )}
+            ) : props.children}
         </div>
     </div>
 )
@@ -31,8 +29,8 @@ Items.defaultProps = {
 };
 
 const mapStateToProps = (state) => {
-    const {items} = state.appReducer;
-    return {items};
+    const { items } = state.appReducer;
+    return { items };
 };
 
- export default connect(mapStateToProps)(Items);
+export default connect(mapStateToProps)(Items);

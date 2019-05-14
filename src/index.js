@@ -1,38 +1,22 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {AppContainer} from 'react-hot-loader';
-import {Provider} from 'react-redux';
-import {PersistGate} from 'redux-persist/integration/react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { hydrate } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Root from './Root';
 
-import App from './App';
-import NotFound from './components/NotFound/index.jsx';
-import configureStore from './store/index.js';
+import configureStore from './store';
 
-const render = (App) => {
-    ReactDOM.render(
-        <AppContainer>
-            <Provider store={configureStore().store}>
-                <PersistGate loading={null} persistor={configureStore().persistor}>
-                <Router>
-                    <Switch>
-                        <Route exact path="/" component={App}/>
-                        <Route path="/search" component={App}/>
-                        <Route path="/film" component={App}/>
-                        <Route path="*" component={NotFound}/>
-                    </Switch>
-                </Router>
-                </PersistGate>
-            </Provider>
-        </AppContainer>,
-        document.getElementById('app')
-    )
+const store = configureStore(window.PRELOADED_STATE);
+store.runSaga();
+
+const root = (
+    <Root
+        Router={BrowserRouter}
+        store={store}
+    />
+);
+
+const render = () => {
+    hydrate(root, document.getElementById('app'));
 };
 
- render(App);
-
- if (module.hot) {
-    module.hot.accept('./App', () => {
-        render(App);
-    });
-}
+render();

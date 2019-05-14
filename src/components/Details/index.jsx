@@ -1,32 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {getItem} from '../../actions';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getItem } from '../../actions';
 
 class Details extends React.Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.getItem(this.props.match.params.id);
     }
 
-     componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps) {
         if (prevProps.match.params.id !== this.props.match.params.id) {
             this.props.getItem(this.props.match.params.id);
         }
     }
 
     render() {
-        const {item, value, searchBy, sortBy} = this.props;
-        const {poster_path, title, vote_average, tagline, release_date, runtime, overview} = item;
+        const { item, value, searchBy, sortBy } = this.props;
+        const { poster_path, title, vote_average, tagline, release_date, runtime, overview } = item;
 
         return (
             <div className="details_wrapper">
-            <Link to={`/search?search=${value}&searchBy=${searchBy}&sortBy=${sortBy}`}>
-                <button
-                    className="details_search_button">
-                    search
+                <Link to={`/search?search=${value}&searchBy=${searchBy}&sortBy=${sortBy}`}>
+                    <button
+                        className="details_search_button">
+                        search
                 </button>
-            </Link>
+                </Link>
                 <img
                     className="details_image"
                     src={poster_path}
@@ -38,7 +38,7 @@ class Details extends React.Component {
                     </div>
                     <span className="details_tagline">{tagline}</span>
                     <div className="details_date_duration">
-                        <span className="details_year">{release_date.slice(0, release_date.indexOf('-'))}</span>
+                        <span className="details_year">{release_date && release_date.slice(0, release_date.indexOf('-'))}</span>
                         <span className="details_runtime">{runtime} min</span>
                     </div>
                     <div className="details_overview">{overview}</div>
@@ -63,12 +63,12 @@ Details.defaultProps = {
     sortBy: '',
     item: {},
     getItem: null,
-    match: {params: {id: ''}}
+    match: { params: { id: '' } }
 };
 
 const mapStateToProps = (state) => {
-    const {value, searchBy, sortBy, item} = state.appReducer;
-    return {value, searchBy, sortBy, item};
+    const { value, searchBy, sortBy, item } = state.appReducer;
+    return { value, searchBy, sortBy, item };
 };
 
-export default connect(mapStateToProps, {getItem})(Details);
+export default connect(mapStateToProps, { getItem })(Details);
