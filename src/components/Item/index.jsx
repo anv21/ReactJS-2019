@@ -18,7 +18,7 @@ class Item extends React.Component {
 
                 <div className="item_info">
                     <span className="item_title">{title}</span>
-                    <span className="item_date">{release_date.slice(0, release_date.indexOf('-'))}</span>
+                    <span className="item_date">{release_date.split('-')[0]}</span>
                 </div>
                 <div className="item_genres">{genres.join(' & ')}</div>
             </div>

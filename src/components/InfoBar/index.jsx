@@ -43,13 +43,13 @@ class InfoBar extends React.Component {
                                     <label className="infoBar_label">Sort by</label>
                                     <Link to={`/search?search=${value}&searchBy=${searchBy}&sortBy=${SORT_BY.RELEASE_DATE}`}>
                                         <span className={"infoBar_sort_by_link " + (sortBy === SORT_BY.RELEASE_DATE && "active_link")}
-                                            onClick={this.onSortByReleaseDateClick.bind(this)}>
+                                            onClick={this.onSortByReleaseDateClick}>
                                             release date
                                         </span>
                                     </Link>
                                     <Link to={`/search?search=${value}&searchBy=${searchBy}&sortBy=${SORT_BY.RATING}`}>
                                         <span className={"infoBar_sort_by_link " + (sortBy === SORT_BY.RATING && "active_link")}
-                                            onClick={this.onSortByRatingClick.bind(this)}>
+                                            onClick={this.onSortByRatingClick}>
                                             rating
                                         </span>
                                     </Link>
