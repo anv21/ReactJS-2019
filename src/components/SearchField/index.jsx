@@ -44,8 +44,8 @@ class SearchField extends React.Component {
         const isEnterPressed = event.which === ENTER_KEY || event.keyCode === ENTER_KEY;
         if (isEnterPressed) {
             const { searchBy, sortBy } = this.props;
-            this.props.setSearchValue(state.value);
-            this.props.history.push(`/search?search=${state.value}&searchBy=${searchBy}&sortBy=${sortBy}`);
+            this.props.setSearchValue(this.state.value);
+            this.props.history.push(`/search?search=${this.state.value}&searchBy=${searchBy}&sortBy=${sortBy}`);
         }
     }
 
@@ -58,7 +58,7 @@ class SearchField extends React.Component {
     }
 
     onBlur = () => {
-        this.props.setSearchValue(state.value);
+        this.props.setSearchValue(this.state.value);
     }
 
     render() {
@@ -72,7 +72,7 @@ class SearchField extends React.Component {
                     onBlur={this.onBlur}
                     onKeyPress={this.onEnter}
                     type="text"
-                    value={state.value}
+                    value={this.state.value}
                 />
                 <div>
                     <label className="search_field_label">search by</label>
@@ -86,7 +86,7 @@ class SearchField extends React.Component {
                         onClick={this.onSearchByGenreClick}
                     >genre
                     </button>
-                    <Link to={`/search?search=${state.value}&searchBy=${searchBy}&sortBy=${sortBy}`}>
+                    <Link to={`/search?search=${this.state.value}&searchBy=${searchBy}&sortBy=${sortBy}`}>
                         <button
                             className="search_button"
                             type="button"
