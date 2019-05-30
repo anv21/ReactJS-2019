@@ -8,15 +8,10 @@ import configureStore from './store';
 const store = configureStore(window.PRELOADED_STATE);
 store.runSaga();
 
-const root = (
-    <Root
-        Router={BrowserRouter}
-        store={store}
-    />
-);
+const root = <Root Router={BrowserRouter} store={store} />;
 
 const render = () => {
-    hydrate(root, document.getElementById('app'));
+  hydrate(root, document.getElementById('app'));
 };
 
 render();

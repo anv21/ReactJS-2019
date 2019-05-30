@@ -9,33 +9,33 @@ import FilmPage from './pages/FilmPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 const Root = ({ Router, location, context, store }) => (
-    <Provider store={store}>
-        <Router location={location} context={context}>
-            <Switch>
-                <Route exact path="/" component={SearchPage} />
-                <Route path="/search" component={SearchPage} />
-                <Route path="/film/:id" component={FilmPage} />
-                <Route path="*" component={NotFoundPage} />
-            </Switch>
-        </Router>
-    </Provider>
+  <Provider store={store}>
+    <Router location={location} context={context}>
+      <Switch>
+        <Route exact path="/" component={SearchPage} />
+        <Route path="/search" component={SearchPage} />
+        <Route path="/film/:id" component={FilmPage} />
+        <Route path="*" component={NotFoundPage} />
+      </Switch>
+    </Router>
+  </Provider>
 );
 
 Root.propTypes = {
-    Router: PropTypes.func.isRequired,
-    location: PropTypes.string,
-    context: PropTypes.shape({
-        url: PropTypes.string,
-    }),
-    store: PropTypes.shape({
-        dispatch: PropTypes.func.isRequired,
-        getState: PropTypes.func.isRequired,
-    }).isRequired,
+  Router: PropTypes.func.isRequired,
+  location: PropTypes.string,
+  context: PropTypes.shape({
+    url: PropTypes.string
+  }),
+  store: PropTypes.shape({
+    dispatch: PropTypes.func.isRequired,
+    getState: PropTypes.func.isRequired
+  }).isRequired
 };
 
 Root.defaultProps = {
-    location: null,
-    context: null,
+  location: null,
+  context: null
 };
 
 export default hot(module)(Root);

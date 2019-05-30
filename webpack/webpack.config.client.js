@@ -7,35 +7,28 @@ const common = require('./webpack.common');
 const isDevMod = process.env.NODE_ENV === 'development';
 
 module.exports = merge(common, {
-    name: 'client',
-    target: 'web',
+  name: 'client',
+  target: 'web',
 
-    entry: [
-        '@babel/polyfill',
-        './src/index.js',
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.(ttf|eot|svg|woff|png|jpg)$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[path][name].[ext]?[hash]'
-                }
-            },
-            {
-                test: /\.css$/,
-                use: [
-                    'css-hot-loader',
-                    MiniCssExtractPlugin.loader,
-                    'css-loader'
-                ],
-            },
-        ],
-    },
+  entry: ['@babel/polyfill', './src/index.js'],
+  module: {
+    rules: [
+      {
+        test: /\.(ttf|eot|svg|woff|png|jpg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[path][name].[ext]?[hash]'
+        }
+      },
+      {
+        test: /\.css$/,
+        use: ['css-hot-loader', MiniCssExtractPlugin.loader, 'css-loader']
+      }
+    ]
+  },
 
-    plugins: [
-        !isDevMod && new CleanWebpackPlugin(),
-        isDevMod && new webpack.HotModuleReplacementPlugin()
-    ].filter(Boolean),
+  plugins: [
+    !isDevMod && new CleanWebpackPlugin(),
+    isDevMod && new webpack.HotModuleReplacementPlugin()
+  ].filter(Boolean)
 });
