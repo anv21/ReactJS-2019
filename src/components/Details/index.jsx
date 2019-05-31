@@ -22,9 +22,11 @@ class Details extends React.Component {
     return (
       <div className="details_wrapper">
         <Link to={`/search?search=${value}&searchBy=${searchBy}&sortBy=${sortBy}`}>
-          <button className="details_search_button">search</button>
+          <button type="button" className="details_search_button">
+            search
+          </button>
         </Link>
-        <img className="details_image" src={poster_path} />
+        <img className="details_image" src={poster_path} alt="" />
         <div className="details_desctiption">
           <div className="details_titile_container">
             <span className="details_title">{title}</span>
@@ -35,7 +37,10 @@ class Details extends React.Component {
             <span className="details_year">
               {release_date && release_date.slice(0, release_date.indexOf('-'))}
             </span>
-            <span className="details_runtime">{runtime} min</span>
+            <span className="details_runtime">
+              {runtime}
+              min
+            </span>
           </div>
           <div className="details_overview">{overview}</div>
         </div>

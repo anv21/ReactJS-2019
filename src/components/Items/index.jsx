@@ -1,11 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Item from '../Item/index.jsx';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
+import Item from '../Item';
+
+const ItemsSection = styled.div`
+  background-color: #fff;
+`;
+
+const ItemsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 900px;
+  margin: 0 auto;
+`;
 
 const Items = props => (
-  <div className="items_section">
-    <div className="items_wrapper">
+  <ItemsSection>
+    <ItemsWrapper>
       {props.items && props.items.length
         ? props.items.map(item => (
             <Item
@@ -16,8 +28,8 @@ const Items = props => (
             />
           ))
         : props.children}
-    </div>
-  </div>
+    </ItemsWrapper>
+  </ItemsSection>
 );
 
 Items.propTypes = {

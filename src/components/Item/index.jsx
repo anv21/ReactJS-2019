@@ -10,7 +10,7 @@ class Item extends React.Component {
     return (
       <div className="item_wrapper">
         <Link to={`/film/${item.id}`}>
-          <img className="item_image" src={poster_path} onClick={this.onItemClick} />
+          <img className="item_image" src={poster_path} onClick={this.onItemClick} alt="" />
         </Link>
 
         <div className="item_info">

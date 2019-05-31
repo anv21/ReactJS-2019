@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import URLSearchParams from '@ungap/url-search-params';
@@ -56,13 +55,6 @@ export class SearchField extends React.Component<Props, State> {
     }
   }
 
-  _getItems(params: URLSearchParams<*>) {
-    const value = params.get('search') || this.props.value;
-    const searchBy = params.get('searchBy') || this.props.searchBy;
-    const sortBy = params.get('sortBy') || this.props.sortBy;
-    this.props.getItems(value, searchBy, sortBy);
-  }
-
   onChange = (event: SyntheticInputEvent<*>) => {
     this.setState({
       value: event.currentTarget.value
@@ -92,6 +84,13 @@ export class SearchField extends React.Component<Props, State> {
     this.props.setSearchValue(this.state.value);
   };
 
+  _getItems(params: URLSearchParams<*>) {
+    const value = params.get('search') || this.props.value;
+    const searchBy = params.get('searchBy') || this.props.searchBy;
+    const sortBy = params.get('sortBy') || this.props.sortBy;
+    this.props.getItems(value, searchBy, sortBy);
+  }
+
   render() {
     const { searchBy, sortBy } = this.props;
 
@@ -109,19 +108,21 @@ export class SearchField extends React.Component<Props, State> {
         <div>
           <label className="search_field_label">search by</label>
           <button
+            type="button"
             className={'search_by_button ' + (searchBy === SEARCH_BY.TITLE && 'active_button')}
             onClick={this.onSearchByTitleClick}
           >
             title
           </button>
           <button
+            type="button"
             className={'search_by_button ' + (searchBy === SEARCH_BY.GENRE && 'active_button')}
             onClick={this.onSearchByGenreClick}
           >
             genre
           </button>
           <Link to={`/search?search=${this.state.value}&searchBy=${searchBy}&sortBy=${sortBy}`}>
-            <button className="search_button" type="button" onClick={this.onSearchClick}>
+            <button className="search_button" type="button">
               search
             </button>
           </Link>

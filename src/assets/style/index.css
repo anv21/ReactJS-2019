@@ -1,11 +1,7 @@
 @import url('reset.css');
-@import url('../../components/Header/style.css');
-@import url('../../components/Logo/style.css');
 @import url('../../components/SearchField/style.css');
 @import url('../../components/Details/style.css');
-@import url('../../components/Footer/style.css');
 @import url('../../components/Item/style.css');
-@import url('../../components/Items/style.css');
 @import url('../../components/InfoBar/style.css');
 
 html, body {
@@ -13,4 +9,12 @@ html, body {
   width: 100%;
   box-sizing: border-box;
   font-family: sans-serif;
+}
+
+.items_empty_result {
+  font-size: 50px;
+  height: 400px;
+  padding-top: 100px;
+  width: 100%;
+  text-align: center;
 }
