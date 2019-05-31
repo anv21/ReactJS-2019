@@ -1,0 +1,12 @@
+node_modules/
+.vscode/
+package-lock.json
+dist/
+.idea/
+cypress/
+public/
+server/
+/src/test
+/src/utils
+.storybook/
+jest.config.js

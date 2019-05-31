@@ -1,5 +1,17 @@
 import React from 'react';
-import ReactDom from 'react-dom';
-import App from './App';
+import { hydrate } from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
+import Root from './Root';
 
-ReactDom.render(<App/>, document.getElementById('app'));
+import configureStore from './store';
+
+const store = configureStore(window.PRELOADED_STATE);
+store.runSaga();
+
+const root = <Root Router={BrowserRouter} store={store} />;
+
+const render = () => {
+  hydrate(root, document.getElementById('app'));
+};
+
+render();

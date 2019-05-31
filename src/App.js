@@ -1,18 +1,16 @@
 import React from 'react';
-import Component from './components/React.Component.jsx';
-import PureComponent from './components/React.PureComponent.jsx';
-import CreateElement from './components/React.CreateElement.jsx';
-import FComponent from './components/React.FunctionalComponent.jsx';
+import './assets/style/index.css';
 
-export default class App extends React.Component {
-    render() {
-        return (
-            <div>
-                <Component/>
-                <PureComponent/>
-                <CreateElement/>
-                <FComponent/>
-            </div>
-        );
+export class App extends React.Component {
+  componentDidUpdate() {
+    if (typeof window !== 'undefined') {
+      window.scrollTo(0, 0);
     }
+  }
+
+  render() {
+    return <div>{this.props.children}</div>;
+  }
 }
+
+export default App;
